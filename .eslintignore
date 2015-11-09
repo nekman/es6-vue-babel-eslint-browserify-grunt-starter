@@ -1,0 +1,4 @@
+dist/
+test/
+karma.conf.js
+Gruntfile.js
