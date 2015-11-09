@@ -1,7 +1,10 @@
 <h1>es6-vue-babel-eslint-browserify-grunt-boilerplate</h1>
-<h3>Preconfigured ES6/ES7 Vue.js starter template</h3>
+<h3>Preconfigured ES6 Vue.js starter template</h3>
 
 ## Features
+
+### Vue.js
+<a href="http://vuejs.org">Vue.js</a> with <a href="http://vuejs.github.io/vue-router/en/index.html">vue-router</a> for routing.
 
 ### ES6
 Transpiled with <a href="https://babeljs.io">Babel.js (v5.8)</a>.
