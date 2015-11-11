@@ -4,9 +4,11 @@
   </header>
   <article>
 
-    Go to <a v-on:click="routeToHello">Hello</a>
-
+    Go to <a href="#" v-on:click="routeToHello">Hello</a>
+    <br />
     <table>
+      <input v-model="interval" v-on:change="intervalChanged" placeholder="Set update frequency">
+
       <tr v-for="quote in quotes">
         <td>{{ quote.Name }}</td>
         <td>{{ quote.Ask }}</td>

@@ -5,6 +5,12 @@
 
   <article>
     <p>{{message}}</p>
+    <input v-model="message">
+
+    <p>Data from $parent</p>
+    <ul>
+      <li v-for="i in items">{{ i }}</li>
+    </ul>
 
     <a v-link="{ path: '/stocks' }">Go to Stocks</a>
   </article>

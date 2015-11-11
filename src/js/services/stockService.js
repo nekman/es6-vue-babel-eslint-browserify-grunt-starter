@@ -1,4 +1,6 @@
-const url = `https://query.yahooapis.com/v1/public/yql?q=
+import Config from 'config';
+
+const url = `${Config.endpoint}?q=
               select * from yahoo.finance.quotes where symbol in ("YHOO","AAPL","GOOG","MSFT")
               &env=http://datatables.org/alltables.env
               &format=json`;
