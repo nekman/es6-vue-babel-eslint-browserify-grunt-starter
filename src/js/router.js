@@ -1,22 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import App from './index';
-import HelloComponent from './components/hello';
-import StockComponent from './components/stock';
 
+// Setup the router (only run once)
 Vue.use(VueRouter);
 
 const router = new VueRouter();
-router.map({
-  '/': {
-    component: HelloComponent
-  },
 
-  '/stocks': {
-    component: StockComponent
-  }
-});
 
-router.start(App, '#app');
-
+// Default, export the router instance (normally we should only export the class, not the instance).
 export default router;

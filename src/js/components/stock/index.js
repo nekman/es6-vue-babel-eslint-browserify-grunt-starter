@@ -1,5 +1,6 @@
 import StockQuoteService from '../../services/stockService';
 import stockTemplate from './stockTemplate.html';
+import appRouter from '../../router';
 
 export default {
   template: stockTemplate,
@@ -10,6 +11,8 @@ export default {
   created() {
     // '$' will make Vue not watch the property.
     this.$stockService = new StockQuoteService();
+    this.$appRouter = appRouter;
+
     this.interval = 2000;
   },
 
@@ -28,6 +31,10 @@ export default {
   methods: {
     fetch() {
       this.$stockService.fetchQuotes().then(quotes => this.quotes = quotes);
+    },
+
+    routeToHello() {
+      this.$appRouter.go('/');
     }
   }
 };
