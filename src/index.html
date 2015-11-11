@@ -12,6 +12,9 @@
     <h1>App</h1>
 
     <router-view></router-view>
+    <template v-if="development">
+      <script src="//localhost:35729/livereload.js"></script>
+    </template>
 
     <script src="app.js"></script>
   </body>

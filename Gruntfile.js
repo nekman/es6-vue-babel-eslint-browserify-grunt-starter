@@ -1,3 +1,27 @@
+'use strict';
+
+var Config = {
+  dev:  './src/js/config/config-dev.json',
+  prod: './src/js/config/config-prod.json'
+};
+
+function aliasify(environment) {
+    var configFile = Config[environment];
+    if (!configFile) {
+      throw new Error('No config for ' + environment);
+    }
+
+    // To see if the file exist...
+    require(configFile);
+
+    return require('aliasify').configure({
+      aliases: {
+        config: configFile
+      },
+      verbose: true
+    });
+}
+
 module.exports = function(grunt) {
 
   var sourceFiles = [
@@ -14,15 +38,27 @@ module.exports = function(grunt) {
     },
 
     browserify: {
-      'dist/app.js': sourceFiles,
+      dev: {
+        files: {
+          'dist/app.js': sourceFiles
+        },
 
-      options: {
-        debug: true,
-        bundleDelay: 1000,
-        transform: [
-          ['partialify'],
-          ['babelify']
-        ]
+        options: {
+          debug: true,
+          bundleDelay: 1000,
+          transform: ['partialify', 'babelify', aliasify('dev')]
+        }
+      },
+      prod: {
+        files: {
+          'dist/app.js': sourceFiles
+        },
+
+        options: {
+          debug: true,
+          bundleDelay: 1000,
+          transform: ['partialify', 'babelify', aliasify('prod')]
+        }
       }
     },
 
@@ -38,7 +74,10 @@ module.exports = function(grunt) {
 
     watch: {
       files: sourceFiles.concat('src/assets/css/*.css').concat('src/**/*.html'),
-      tasks: ['browserify', 'cssmin', 'copy', 'uglify']
+      tasks: ['browserify', 'cssmin', 'copy', 'uglify'],
+      options: {
+        livereload: true,
+      }
     },
 
     copy: {
@@ -68,12 +107,13 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('build-dev', [
+  grunt.registerTask('default', [
     'eslint',
     'karma',
-    'browserify',
+    'browserify:dev',
     'copy',
-    'cssmin'
+    'cssmin',
+    'watch'
   ]);
 
   grunt.registerTask('test', [
@@ -81,10 +121,10 @@ module.exports = function(grunt) {
     'karma'
   ]);
 
-  grunt.registerTask('default', [
+  grunt.registerTask('build-prod', [
     'eslint',
     'karma',
-    'browserify',
+    'browserify:prod',
     'copy',
     'uglify',
     'cssmin'

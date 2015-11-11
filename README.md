@@ -23,4 +23,4 @@ Minfiy CSS with <a href="https://www.npmjs.com/package/cssmin">cssmin</a>, minif
 
 * ```grunt``` lint, test and build
 * ```grunt test``` lint, test
-* ```grunt watch``` rebuild when a source file is modified
+* ```grunt watch``` rebuild and livereload when a source file is modified
