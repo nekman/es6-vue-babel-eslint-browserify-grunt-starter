@@ -3,11 +3,16 @@
     <h2>Stocks</h2>
   </header>
   <article>
+    <p>
+      Go to <a href="#" v-on:click="routeToHello">Hello</a>
+    </p>
 
-    Go to <a href="#" v-on:click="routeToHello">Hello</a>
-    <br />
-    <table>
-      <input v-model="interval" v-on:change="intervalChanged" placeholder="Set update frequency">
+    <div>
+      <label for="frequency">Set update frequency</label>
+      <input name="frequency" v-model="interval" v-on:change="intervalChanged" placeholder="Set update frequency">
+    </div>
+
+    <table style="margin-top: 25px;">
 
       <tr v-for="quote in quotes">
         <td>{{ quote.Name }}</td>

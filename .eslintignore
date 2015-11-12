@@ -1,4 +1,5 @@
 dist/
 test/
+grunt/
 karma.conf.js
 Gruntfile.js

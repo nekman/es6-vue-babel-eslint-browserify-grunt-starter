@@ -1,3 +1,5 @@
+var aliasify = require('./grunt/aliasify');
+
 module.exports = function(config) {
   config.set({
     basePath: '',
@@ -23,10 +25,7 @@ module.exports = function(config) {
 
     browserify: {
       debug: true,
-      transform: [
-        ['partialify'],
-        ['babelify', { stage: 0 }]
-      ]
+      transform: ['partialify', 'babelify', aliasify('dev')]
     },
 
     port: 9876,
